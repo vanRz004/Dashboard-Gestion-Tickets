@@ -16,9 +16,9 @@
           class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full"
         >
           <option value="">Todos los estados</option>
-          <option value="abierto">Abierto</option>
-          <option value="en_progreso">En Progreso</option>
-          <option value="resuelto">Resuelto</option>
+          <option value="Abierto">Abierto</option>
+          <option value="En Progreso">En Progreso</option>
+          <option value="Resuelto">Resuelto</option>
         </select>
         <select
           :value="priorityFilter"
@@ -26,15 +26,14 @@
           class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full"
         >
           <option value="">Todas las prioridades</option>
-          <option value="baja">Baja</option>
-          <option value="media">Media</option>
-          <option value="alta">Alta</option>
-          <option value="critica">Crítica</option>
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+          <option value="Critica">Crítica</option>
         </select>
       </div>
     </div>
 
-    <!-- Tabla -->
     <div class="bg-white rounded-lg shadow overflow-x-auto">
       <table class="min-w-[600px] w-full">
         <thead class="bg-gray-50">

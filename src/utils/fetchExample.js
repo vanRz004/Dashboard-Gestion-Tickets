@@ -3,10 +3,17 @@
 export async function fetchRetry(fn, retries = 3, delay = 1000) {
   for (let i = 0; i < retries; i++) {
     try {
-      return await fn();
+      const result = await fn();
+      console.log(`Intento ${i + 1}: Funciona`);
+      return result;
     } catch (err) {
-      if (i === retries - 1) throw err; 
+      console.warn(`Intento ${i + 1} fallido:`, err);
+      if (i === retries - 1) {
+        console.error("falló");
+        throw err; 
+      }
       await new Promise(res => setTimeout(res, delay));
+      console.log(`Esperando ${delay}ms antes del próximo intento...`);
     }
   }
 }

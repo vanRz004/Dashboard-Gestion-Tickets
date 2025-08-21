@@ -22,7 +22,7 @@ export const API = (() => {
       fechaActualizacion: "2024-08-13T09:20:00Z",
       asignadoA: "maria.garcia@tuboleta.com",
       etiquetas: ["frontend", "diseño"]
-    }
+    },
   ];
 
   const usuarios = [
@@ -35,7 +35,7 @@ export const API = (() => {
     const { timeout = 5000, failRate = 0.2 } = options;
 
     return new Promise((resolve, reject) => {
-      const delay = Math.random() * 1000 + 500; // 0.5 - 1.5s de delay
+      const delay = Math.random() * 1000 + 500;
       setTimeout(() => {
         const rnd = Math.random();
 
@@ -51,7 +51,7 @@ export const API = (() => {
     });
   };
 
-  // API methods
+  // metoods
   return {
     getTickets: async () => simulateRequest([...tickets]),
     getTicket: async (id) => {

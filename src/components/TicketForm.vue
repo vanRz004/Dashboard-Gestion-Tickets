@@ -21,17 +21,32 @@
         </div>
 
         <!-- Prioridad -->
+        <!-- Se deja deshabilitada la prioridad para el modo edición 
+        ya que se prioriza la integridad de la información   -->
         <div class="mb-4">
           <label class="block text-sm font-medium mb-2">Prioridad</label>
-          <select v-model="localTicket.prioridad" required
+          <select v-model="localTicket.prioridad" required :disabled="isEdit"
             class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+            <option disabled value="">Selecciona la prioridad</option>
             <option value="Baja">Baja</option>
             <option value="Media">Media</option>
             <option value="Alta">Alta</option>
             <option value="Critica">Crítica</option>
           </select>
         </div>
+        <!-- Estado -->
+        <!-- Se deja el estado deshabilitado solo para cuando se va acrear un ticket ya que 
+        si siemrpe se crea unticket siempre tendra un estado abierto -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Estado:</label>
+          <select v-model="localTicket.estado" required :disabled="!isEdit"
+            class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+            <option value="Abierto">Abierto</option>
+            <option value="En Progreso">En Progreso</option>
+            <option value="Resuelto">Resuelto</option>
 
+          </select>
+        </div>
         <!-- Asignado a -->
         <div class="mb-4">
           <label class="block text-sm font-medium mb-2">Asignado a</label>
@@ -59,8 +74,9 @@
   </div>
 </template>
 <script setup>
-import {  watch, ref, onMounted } from 'vue'
+import { watch, ref, onMounted } from 'vue'
 import { API } from '@/services/api'
+import { fetchRetry } from '@/utils/fetchExample'
 
 const props = defineProps({
   ticket: { type: Object, required: true },
@@ -83,8 +99,14 @@ watch(
 // no solo cuando cambia toda la referencia,
 // asi tambien es seguro extraer o guardar todos los edits que hagamos en un ticket
 onMounted(async () => {
-  usuarios.value = await API.getUsuarios()
+  try {
+    usuarios.value = await fetchRetry(() => API.getUsuarios());
+  } catch (err) {
+    console.error("Error cargando usuarios:", err)
+    usuarios.value = [] 
+  }
 })
+
 
 const handleSubmit = () => {
   if (props.isEdit) {
