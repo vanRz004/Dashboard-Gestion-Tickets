@@ -13,12 +13,7 @@
 
 <script setup>
 
-// Decidí crear este componente como reutilizable porque permite mantener
-// consistencia en el diseño de las cards en toda la aplicación
-// Al recibir props para el icono, título y valor, el mismo componente puede adaptarse 
-// a distintos datos sin necesidad de duplicar código... 
-// esto facilita el mantenimiento, escalabilidad y la futura incorporación de nuevas 
-// estadísticas en el dashboard sin romper la consistencia visual
+
 
 defineProps({
   icon: { type: [Array, String], required: true },
