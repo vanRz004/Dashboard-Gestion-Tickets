@@ -81,19 +81,19 @@ defineProps({
 
 const getStatusClass = (status) => {
   const classes = {
-    'abierto': 'bg-red-100 text-red-800',
-    'en_progreso': 'bg-yellow-100 text-yellow-800',
-    'resuelto': 'bg-green-100 text-green-800'
+    'Abierto': 'bg-red-100 text-red-800',
+    'En Progreso': 'bg-yellow-100 text-yellow-800',
+    'Resuelto': 'bg-green-100 text-green-800'
   }
   return classes[status] || 'bg-gray-100 text-gray-800'
 }
 
 const getPriorityClass = (priority) => {
   const classes = {
-    'baja': 'bg-blue-100 text-blue-800',
-    'media': 'bg-yellow-100 text-yellow-800',
-    'alta': 'bg-orange-100 text-orange-800',
-    'critica': 'bg-red-100 text-red-800'
+    'Baja': 'bg-blue-100 text-blue-800',
+    'Media': 'bg-yellow-100 text-yellow-800',
+    'Alta': 'bg-orange-100 text-orange-800',
+    'Critica': 'bg-red-100 text-red-800'
   }
   return classes[priority] || 'bg-gray-100 text-gray-800'
 }

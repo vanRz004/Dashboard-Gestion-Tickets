@@ -21,9 +21,9 @@ const canvasEl = ref(null)
 let chartInstance = null
 
 const counts = computed(() => {
-  const abierto = props.tickets.filter(t => t.estado === 'abierto').length
-  const enProgreso = props.tickets.filter(t => t.estado === 'en progreso').length
-  const resuelto = props.tickets.filter(t => t.estado === 'resuelto').length
+  const abierto = props.tickets.filter(t => t.estado === 'Abierto').length
+  const enProgreso = props.tickets.filter(t => t.estado === 'En Progreso').length
+  const resuelto = props.tickets.filter(t => t.estado === 'Resuelto').length
   return { abierto, enProgreso, resuelto }
 })
 
