@@ -5,14 +5,14 @@ Este proyecto es una aplicación web que simula un Dashboard para Gestión de Ti
 
 Clonar el repositorio
 
-git clone https://github.com/vanrz004/ticket-fast-sas.git
-cd ticket-fast-sas
+* git clone https://github.com/vanrz004/ticket-fast-sas.git
+* cd ticket-fast-sas
 
-npm i 
-npm run dev
+* npm i 
+* npm run dev
 
 Abrir el localhost en el navegador:
-http://localhost:5177
+* http://localhost:5177
 
 ## Decisiones técnicas tomadas:
 
@@ -30,30 +30,30 @@ http://localhost:5177
 
 **Testing**: Vitest para validar campos vacios y fechas de creación de tickets
 
-##Tiempo invertido en cada sección con funcionalidad
+## Tiempo invertido en cada sección con funcionalidad
 
-**Cards**: 1 hora
-**Filtros y tabla**: 3 horas
-**Gráfico de tickets**:. 1 hora
-**Modal de creación y edición**:2 horas
+* **Cards**: 1,5 horas
+* **Filtros y tabla**: 3 horas
+* **Gráfico de tickets**:. 1 hora
+* **Modal de creación y edición**:3 horas
 
-##Mejoras futuras que implementarías
+## Mejoras futuras que implementarías
 
 Ya que es un aplicativo que pueden manejar varias personas estaria bien implementar el uso de sesiones para que sea solo de la compañia para asi también tener roles de permiso.
 Generar un historial de las personas que entran y generan acciones en el aplicativo (auditoria).
 Se pueden agregar más filtros como por ejemplo: por fecha.
 A ticket se le puede agregar un campo de evidencia que para cerrarlo se muestre como fue solucionado.
 
-##API Error Handling Documentation
+## API Error Handling Documentation
 
-**Manejo de errores en la aplicación**
+* **Manejo de errores en la aplicación**
 Implementé un servicio centralizado (api.js) que envuelve fetch y aplica un try-catch permitiendo la captura de errores de red, de servidor o de desarrollo. También hay un registro en la consola para mostrar el error de donde proviene en su respectiva depuración
 
-**Estrategias de retry utilizadas y por qué**
+* **Estrategias de retry utilizadas y por qué**
 Implementé una función de retry que básicamente intenta repetir la petición un par de veces si falla, pero con pausas cada vez más largas (1 seg, 2seg ...).
 La idea es que si el servidor está saturado o hay un fallo momentáneo de red, el sistema no se rinda al primer intento, sino que espere y vuelva a probar teniendo en cuenta que si el error es por cliente, como un 400, no tendría sentido reintentar solo  se realiza cuando son errores de red o del servidor.
 
-**Manejo de diferentes tipos de errores**
+* **Manejo de diferentes tipos de errores**
 
 Errores de red: Se manejan en el catch de fetchRetry, si falla muestra que la llamada al api ha fallado.
 
@@ -83,7 +83,7 @@ export async function fetchRetry(fn, retries = 3, delay = 1000) {
   }
 }
 ```
-**Experiencia previa con problemas similares de API en proyectos reales**
+* **Experiencia previa con problemas similares de API en proyectos reales**
 En proyectos anteriores ya trabajé con APIs que presentaban inestabilidad intermitente, por ejemplo en sistemas de ventas y CRM:
 
 Aplicamos retry con useAsyncData de Nuxt para mitigar caídas temporales o iniciales ya que eran millones de datos.
