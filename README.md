@@ -55,14 +55,14 @@ La idea es que si el servidor está saturado o hay un fallo momentáneo de red, 
 
 * **Manejo de diferentes tipos de errores**
 
-* Errores de red: Se manejan en el catch de fetchRetry, si falla muestra que la llamada al api ha fallado.
+> * Errores de red: Se manejan en el catch de fetchRetry, si falla muestra que la llamada al api ha fallado.
 
-* 500 Internal Server Error: capturado en el catch, se muestra un mensaje genérico de error del servidor.
+> * 500 Internal Server Error: capturado en el catch, se muestra un mensaje genérico de error del servidor.
 
-* 404 Not Found: cuando un recurso no existe, se devuelve inmediatamente.
+> * 404 Not Found: cuando un recurso no existe, se devuelve inmediatamente.
 
 
-* Retry strategy: se utiliza una función genérica (fetchRetry) que reintenta 3 veces con un delay fijo entre cada intento. Esto ayuda a manejar caídas momentáneas de red o errores tipo 500
+> * Retry strategy: se utiliza una función genérica (fetchRetry) que reintenta 3 veces con un delay fijo entre cada intento. Esto ayuda a manejar caídas momentáneas de red o errores tipo 500
 
 ```
 export async function fetchRetry(fn, retries = 3, delay = 1000) {
@@ -85,6 +85,6 @@ export async function fetchRetry(fn, retries = 3, delay = 1000) {
 ```
 * **Experiencia previa con problemas similares de API en proyectos reales**
 >En proyectos anteriores ya trabajé con APIs que presentaban inestabilidad intermitente, por ejemplo en sistemas de ventas y CRM: 
-* Aplicamos retry con useAsyncData de Nuxt para mitigar caídas temporales o iniciales ya que eran millones de datos.
-* Se usó cache local (Pinia) para mejorar la experiencia y también  Redis que ejecutaba todos los endpoints a partir de una hora especifica haciendo que cuando ya entraran a validar estuvieran actualizados al día procurando la disponibilidad y la integridad de los datos.
-* Aprendí a diferenciar qué errores realmente necesitan retry y cuáles son necesarios guardar en un cache distribuido (cuando se trata de mucha data).
+> * Aplicamos retry con useAsyncData de Nuxt para mitigar caídas temporales o iniciales ya que eran millones de datos.
+> * Se usó cache local (Pinia) para mejorar la experiencia y también  Redis que ejecutaba todos los endpoints a partir de una hora especifica haciendo que cuando ya entraran a validar estuvieran actualizados al día procurando la disponibilidad y la integridad de los datos.
+> * Aprendí a diferenciar qué errores realmente necesitan retry y cuáles son necesarios guardar en un cache distribuido (cuando se trata de mucha data).
