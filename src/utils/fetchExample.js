@@ -1,5 +1,6 @@
 // Aquí implementé el modelo que también se utiliza en nuxt creando una función general
-// dandole una cantidad de intentos y un delay para lla espera entre cada retry
+// dandole una cantidad de intentos y un delay para lla espera entre cada retry 
+// esto hace que sea optimo en todas las funciones que lo necesite
 export async function fetchRetry(fn, retries = 3, delay = 1000) {
   for (let i = 0; i < retries; i++) {
     try {

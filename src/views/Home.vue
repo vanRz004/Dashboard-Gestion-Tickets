@@ -98,7 +98,8 @@ const ticketsStats = computed(() => {
   const resueltos = tickets.value.filter(t => t.estado === 'Resuelto').length
   return { total, abiertos, enProgreso, resueltos }
 })
-
+// Se utilizó varios computed, en este caso para filtrar tickets dinámicamente
+// sin modificar la lista original, asegurando que los filtros sean reactivos
 const filteredTickets = computed(() => {
   return tickets.value.filter(ticket => {
     const titulo = ticket.titulo || ''
@@ -136,7 +137,6 @@ const createTicket = async (newTicket) => {
   ticketToSave.id = maxId + 1;
 
   loading.value = true;
-  error.value = null;
 
   try {
     const savedTicket = await fetchRetry(() => API.createTicket(ticketToSave));

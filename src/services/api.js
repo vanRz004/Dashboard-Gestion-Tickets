@@ -51,7 +51,7 @@ export const API = (() => {
     });
   };
 
-  // metoods
+  // metodos
   return {
     getTickets: async () => simulateRequest([...tickets]),
     getTicket: async (id) => {
@@ -60,7 +60,8 @@ export const API = (() => {
       return simulateRequest(ticket);
     },
     createTicket: async (ticket) => {
-      const newTicket = { ...ticket, id: tickets.length + 1 };
+      const now = new Date().toISOString();
+      const newTicket = { ...ticket, id: tickets.length + 1, fechaCreacion: now, };
       tickets.push(newTicket);
       return simulateRequest(newTicket);
     },

@@ -27,7 +27,9 @@ const counts = computed(() => {
   return { abierto, enProgreso, resuelto }
 })
 
-
+// se agrega una paleta de colors segun cada estado,
+// ya que si lo dejo en un solo orden no tendria en cuenta solo la propiedad 
+// para la que queremos darle color en este caso los estados
 const palette = {
   abierto: 'rgba(220, 76, 70, 0.75)',
   enProgreso: 'rgba(230, 176, 80, 0.75)', 
@@ -102,7 +104,6 @@ const updateChart = () => {
 }
 
 onMounted(() => {
-  // Asegura altura del lienzo vía CSS (padre tiene padding)
   canvasEl.value.parentElement.style.height = '320px'
   renderChart()
 })
