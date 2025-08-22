@@ -175,7 +175,6 @@ const createTicket = async (newTicket) => {
 
 const updateTicket = async (updatedData) => {
   loading.value = true
-  error.value = null
 
   try {
     const updatedTicket = await fetchRetry(() =>
